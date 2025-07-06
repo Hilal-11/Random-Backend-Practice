@@ -2,6 +2,19 @@ const Like = require('../Models/LikeModel')
 const Post = require('../Models/PostModel')
 const likePost = async (req , res) => {
     try{
+
+        // const { post , user} = req.body;
+        // const saveLike = await Like.create({
+        //     post,
+        //     user
+        // })
+        // const updatePost = await Post.findByIdAndUpdate(post , { $push:{ likes:saveLike._id }}, {new: true}).populate("likes").exec()
+        // res.status().json({
+        //     success: true,
+        //     response: saveLike,
+        //     message: "successfully likes the post"
+        // })
+
         const { post , user} = req.body;
         const createLike = Like({
             post,
@@ -23,3 +36,5 @@ const likePost = async (req , res) => {
         })
     }
 }
+
+module.exports = likePost
