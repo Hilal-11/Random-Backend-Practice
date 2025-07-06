@@ -1,17 +1,17 @@
 const Like = require('../Models/LikeModel')
+const Post = require('../Models/PostModel')
 const likePost = async (req , res) => {
     try{
-        const { id } = req.params
         const { post , user} = req.body;
-
-        // const like_post = await Like.findByIdAndUpdate(
-        //     { _id: id},
-        //     { post, user }
-        // );
-
+        const createLike = Like({
+            post,
+            user,
+        })
+        const saveLike = await createLike.save();
+        const updatePost = await Post.findByIdAndUpdate(post , { $push:{ likes:saveLike._id }}, {new: true}).populate("likes").exec()
         res.status().json({
             success: true,
-            response: like_post,
+            response: saveLike,
             message: "successfully likes the post"
         })
     }catch(error) {
