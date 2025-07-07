@@ -1,5 +1,5 @@
 const Employee = require('../models/emploeeSchema')
-const getAllEmployees = async (res , res) => {
+const getAllEmployees = async (req , res) => {
     try{
         const response = await Employee.find({})
         res.status(200).json({

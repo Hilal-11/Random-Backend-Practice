@@ -1,8 +1,8 @@
 const Employee = require('../models/emploeeSchema')
-const createEmployee = async (res , res) => {
+const createEmployee = async (req , res) => {
     try{   
         const { employee_name , employee_email , employee_type,
-                employee_department , employee_role , employee_phone } = res.body 
+                employee_department , employee_role , employee_phone } = req.body 
 
         const saveEmploye = await Employee.create({
             employee_name , employee_email , employee_type,
