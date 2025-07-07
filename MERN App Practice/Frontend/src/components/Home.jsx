@@ -7,7 +7,7 @@ function Home() {
     const navigate = useNavigate('')
     const getAllData = async () => {
         try{
-            const employees = await fatch(`
+            const employees = await fetch(`
             http://localhost:3000/api/v1/getAllEmployees`,
             {
                 method: 'GET',
