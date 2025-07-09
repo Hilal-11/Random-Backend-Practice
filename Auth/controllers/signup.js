@@ -37,20 +37,23 @@ const sighup = async (req , res) => {
             role
         })
 
+// alternative
+        const payload = {
+            email: createUser.email,
+            id: Auth.createUser._id,
+            role: createUser.role
+        }
+        const token = jwt.sign(
+            payload,
+            process.env.SECRET_KEY,
+            
+        )
+        
 
         res.status(200).json({
             success: true,
             message: "user signin successfully",
-            token: await jwt.sign(
-                {
-                    user: createUser._id,
-                    email: userExists.email,
-                },
-                process.env.SECRET_KEY,
-                {
-                    expiresIn: '24h'
-                }
-            ),
+            response: token,
         }) 
 
     }catch(error){
