@@ -37,7 +37,6 @@ const sighup = async (req , res) => {
             role
         })
 
-// alternative
         const payload = {
             email: createUser.email,
             id: Auth.createUser._id,
@@ -49,14 +48,32 @@ const sighup = async (req , res) => {
             
         )
         
-
         res.status(200).json({
             success: true,
             message: "user signin successfully",
             response: token,
         }) 
 
-    }catch(error){
+
+                
+// alternative of generating JWT token
+// alternative of generating JWT token
+
+        //  res.status(200).json({
+        //     success: true,
+        //     message: "user signin successfully",
+        //     response: await jwt.sign(
+        //         {
+        //             email: createUser.email,
+        //             id: createUser._id,
+        //             role: createUser.role
+                    
+        //         },
+        //         process.env.SECRET_KEY
+        //     ),
+        // })
+
+}catch(error){
         console.log(error.message)
         console.log("failed to signIn")
 
