@@ -1,13 +1,13 @@
 const Auth = require('../models/authSchema')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
-
+require('dotenv').config()
 
 const sighup = async (req , res) => {
     try{
-        const { username , email , password } = req.body;
+        const { username , email , password , role} = req.body;
         // simple validation
-        if(!username || !email || !password){
+        if(!username || !email || !password || role){
             return res.status(401).json({
                 success: false,
                 message: "please fill the proper details"
@@ -17,7 +17,7 @@ const sighup = async (req , res) => {
         // check user already exists are not
         const userExists = await Auth.findOne({ email })
         if(userExists){
-            return res.status(401).json({
+            return res.status(400).json({
                 success: false,
                 message: "user already exists"
             })
@@ -34,13 +34,23 @@ const sighup = async (req , res) => {
             username,
             email,
             password: hash_password,
+            role
         })
 
 
         res.status(200).json({
             success: true,
             message: "user signin successfully",
-            token: "0101",
+            token: await jwt.sign(
+                {
+                    user: createUser._id,
+                    email: userExists.email,
+                },
+                process.env.SECRET_KEY,
+                {
+                    expiresIn: '24h'
+                }
+            ),
         }) 
 
     }catch(error){
