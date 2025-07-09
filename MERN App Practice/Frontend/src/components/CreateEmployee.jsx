@@ -17,15 +17,16 @@ function CreateEmployee() {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   }
+  
   const handleSubmit = (event) => {
     event.preventDefault()
     fetch('http://localhost:3000/api/v1/createEmployee', 
       {
         method: 'POST',
-        body: JSON.stringify(formData),
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(formData),
       }
     ).then((res) => {
       res.json()
