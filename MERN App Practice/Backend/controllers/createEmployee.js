@@ -1,4 +1,4 @@
-const Employee = require('../models/emploeeSchema')
+const Employee = require('../models/employeeSchema')
 const createEmployee = async (req , res) => {
     try{   
         const { employee_name , employee_email , employee_type,
