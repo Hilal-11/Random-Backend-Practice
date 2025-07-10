@@ -39,7 +39,7 @@ const sighup = async (req , res) => {
 
         const payload = {
             email: createUser.email,
-            id: Auth.createUser._id,
+            id: createUser._id,
             role: createUser.role
         }
         const token = jwt.sign(
