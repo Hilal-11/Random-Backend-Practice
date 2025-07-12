@@ -12,8 +12,8 @@ const login = async (req , res) => {
             })
         }
         //check user exists are not
-        const userExists = await Auth.findOne({ email });
-        if(!userExists) {
+        let user = await Auth.findOne({ email });
+        if(!user) {
             return res.status(401).json({
                 sucess: false,
                 message: "Faile to login... user not exists"
@@ -22,9 +22,9 @@ const login = async (req , res) => {
 
 
         // Dcrypy the password and compare
-        const user = await bcrypt.compare(password , userExists.password);
+       
 
-        if(user) {
+        if(bcrypt.compare(password , user.password)) {
             const token = await jwt.sign(
                     {
                         email: user.email,
@@ -34,6 +34,10 @@ const login = async (req , res) => {
                     process.env.SECRET_KEY
                 )
             // for cookie
+            user = user.toObject();
+            user.token = token
+            user.password = undefined
+
             const options = {
                 expiresIn: Date(Date.now()  * 3 * 24 * 60 * 60 * 1000),
                 httpOnly: true
