@@ -20,10 +20,7 @@ const login = async (req , res) => {
             })
         }
 
-
         // Dcrypy the password and compare
-       
-
         if(bcrypt.compare(password , user.password)) {
             const token = await jwt.sign(
                     {
