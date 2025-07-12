@@ -31,3 +31,13 @@ const createEmployee = async (req , res) => {
 }
 
 module.exports = createEmployee
+
+
+// {
+//    "employee_name":"Hilal" ,
+//     "employee_email": "hilalahmadcodedev123@gmail.com" ,
+//     "employee_type": "Software developer",
+//     "employee_department": "IT" ,
+//     "employee_role": "Software Developer" ,
+//     "employee_phone": "9906642151"
+// }
