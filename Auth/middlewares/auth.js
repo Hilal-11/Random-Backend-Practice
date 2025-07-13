@@ -14,9 +14,9 @@ exports.auth = async (req , res , next) => {
         }
         // decode token and find the role from token using JWT // varify the token
         try{
-            const decode = jwt.verify(token , process.env.SECRET_KEY);
-            console.log(decode)
-            req.user = decode
+            const payload = jwt.verify(token , process.env.SECRET_KEY);
+            console.log(payload)
+            req.user = payload
         }catch(error){
             return res.status(401).json({
                 success: false,
