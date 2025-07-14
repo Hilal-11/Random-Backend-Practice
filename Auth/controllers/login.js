@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const login = async (req , res) => {
     try{
-        const { email , password } = req.body;
-        if(!email || !password) {
+        const { email , password , role} = req.body;
+        if(!email || !password , !role) {
             return res.status().json({
                 sucess: false,
                 message: "Please provide the email and password"

@@ -7,7 +7,7 @@ const sighup = async (req , res) => {
     try{
         const { username , email , password , role} = req.body;
         // simple validation
-        if(!username || !email || !password || role){
+        if(!username || !email || !password || !role){
             return res.status(401).json({
                 success: false,
                 message: "please fill the proper details"
