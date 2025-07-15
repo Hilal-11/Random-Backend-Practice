@@ -28,6 +28,16 @@ function Home() {
         </button>
       </div>
     </nav>
+
+
+
+    <div className='w-full h-full flex justify-center items-center'>
+        <div className='flex justify-center items-center'>
+            <h1 className='text-6xl poppins-bold text-blue-500'>Hello Hilal</h1>
+        </div>
+    </div>
+
+
     </div>
   )
 }
