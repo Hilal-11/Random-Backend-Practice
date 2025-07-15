@@ -19,26 +19,28 @@ const login = async (req , res) => {
                 message: "User not exists"
             })
         }
-
-        if(await bcrypt.compare(userExists.password , password)) {
+        const user = await bcrypt.compare(password , userExists.password)
+        if(user) {
             // generate jwt token
             // store on cookies
-            const token = await jwt.sign(
-                {
-                    user: userExists._id,
-                    email: userExists.email,
-                    role: userExists.role
-                },
-                process.env.SECRET_KEY
+            const token = await jwt.sign( 
+                    {
+                        user: userExists._id,
+                        email: userExists.email,
+                        role: userExists.role
+                    }
+                , process.env.SECRET_KEY
             )
+            
+            // store on jwt token on cookies 
             const options = {
-                expiresIn: Date(Date.now() * 1 * 24 * 60 * 60 * 1000),
+                expiresIn: Date(Date.now() * 3 * 24 * 60 * 60 * 1000),
                 httpOnly: true
             }
-            cookie("token" , token , options).status(200).json({
+            res.cookie("token" , token , options).status(201).json({
                 success: true,
-                message: "user login successful",
-                token,
+                message: "User registered successfully",
+                response: token
             })
         }else{
             return res.status(400).json({

@@ -1,7 +1,7 @@
 const Auth = require('../models/authSchema')
 const getUserInfo = async (req , res) => {
     try {
-        const { } = req.body;
+        // const { } = req.body;
 
     }catch(error) {
         console.log(error.message)

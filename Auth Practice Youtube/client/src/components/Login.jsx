@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 function Login() {
+    const navigate = useNavigate()
     const [form, setForm] = useState({
     email: '',
     password: '',
@@ -13,7 +14,25 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle login logic here (e.g., API call)
-    console.log(form);
+    fetch('http://localhost:3000/api/v1/login' , {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(form)
+    }).then(res => {
+      console.log(res);
+      if(res.ok) {
+        setForm({
+          email: '',
+          password: ''
+        })
+        navigate('/')
+      }
+    }).catch(error => {
+      console.log(error.message)
+    })
+    
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-slate-950 text-gray-700">
