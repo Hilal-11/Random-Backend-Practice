@@ -48,16 +48,10 @@ const register = async (req , res) => {
         }
         res.cookie("token" , token , options).status(201).json({
             success: true,
-            message: "Cookie stored successfully",
-            response: token
-        })
-
-        res.status(201).json({
-            success: true,
             message: "User registered successfully",
             response: token
         })
-        
+
 
     }catch (error) {
         console.error("Error in registration:", error);
