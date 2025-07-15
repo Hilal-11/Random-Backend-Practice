@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Registration() {
+  const navigate = useNavigate()
     const [form, setForm] = useState({
     username: '',
     email: '',
@@ -15,7 +17,32 @@ function Registration() {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle registration logic here (e.g., API call)
-    console.log(form);
+
+    fetch('http://localhost:3000/api/v1/register' , {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(form)
+    }).then((response) => {
+      console.log(response)
+      const data = response.json()
+      console.log(data)
+
+      if(response.ok) {
+        setForm({
+          username: '',
+          email: '',
+          phone: '',
+          password: '',
+        })
+        navigate('/login')
+      }
+
+    }).catch((error) => {
+      console.log(error.message)
+    })
+    
   };
 
   return (

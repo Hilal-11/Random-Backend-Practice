@@ -7,20 +7,20 @@ function Home() {
   const navigate = useNavigate()
   const [userInfo , setUserInfo] = useState('')
 
-  const fetchUserDetails = async () => {
-    try{
-      const response = await fetch('http://localhost:3000/api/v1/getUserInfo')
-      const data = await response.json();
-      setUserInfo(data)
-    }catch(error) {
-      console.log(error.message);
-    }
-  }
+//   const fetchUserDetails = async () => {
+//     try{
+//       const response = await fetch('http://localhost:3000/api/v1/getUserInfo')
+//       const data = await response.json();
+//       setUserInfo(data)
+//     }catch(error) {
+//       console.log(error.message);
+//     }
+//   }
 
-  console.log(userInfo)
-useEffect(() => {
-  fetchUserDetails()
-}, [])
+//   console.log(userInfo)
+// useEffect(() => {
+//   fetchUserDetails()
+// }, [])
 
   return (
     <div className='py-2'> 
@@ -48,7 +48,7 @@ useEffect(() => {
 
     <div className='w-full h-full  items-center py-10'>
         <div className='flex justify-center items-center '><br /><br />
-            <h1 className='text-8xl poppins-bold text-blue-500'>Hello Hilal</h1>
+            <h1 className='text-8xl poppins-bold text-blue-500'>Hello Hilal </h1>
         </div><br />
         <div className='poppins-extralight px-10 text-lg text-center'>
           <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam veniam veritatis cupiditate perferendis! Sit veniam explicabo ut. Labore et voluptatibus, aliquid expedita quae beatae ipsum! Odio quas labore odit unde</p>
