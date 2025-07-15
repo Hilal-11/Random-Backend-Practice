@@ -6,14 +6,12 @@ import Login from './components/Login'
 function App() {
 
   return (
-    <div> 
-
+    <div className='bg-slate-950 w-full h-screen text-white poppins-regular'> 
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<Registration />} />
         <Route path='/login' element={<Login />} />
       </Routes>
-     
     </div>
   )
 }
