@@ -1,11 +1,21 @@
 const express = require('express');
 const connectDB = require('./config/database');
-const appRoutes = require('./routes/appRoutes');   
+const appRoutes = require('./routes/appRoutes');
+const cors = require('cors')   
 const app = express(); 
 require('dotenv').config(); 
 const PORT =process.env.PORT || 4000;
 
+
 // Middleware
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials : true
+    
+}
+
+app.use(cors(corsOptions))
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use('/api/v1' , appRoutes); // Use app routes
