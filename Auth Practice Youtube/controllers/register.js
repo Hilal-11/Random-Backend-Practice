@@ -31,11 +31,31 @@ const register = async (req , res) => {
             phone,
             password: hashPassword
         })
+        // generate JWT token
+        const token = await jwt.sign( 
+            {
+                user: newUser._id,
+                email: newUser.email,
+                role: newUser.role
+            }
+            , process.env.SECRET_KEY
+        )
+
+        // store on jwt token on cookies 
+        const options = {
+            expiresIn: Date(Date.now() * 3 * 24 * 60 * 60 * 1000),
+            httpOnly: true
+        }
+        res.cookie("token" , token , options).status(201).json({
+            success: true,
+            message: "Cookie stored successfully",
+            response: token
+        })
 
         res.status(201).json({
             success: true,
             message: "User registered successfully",
-            response: newUser
+            response: token
         })
         
 
